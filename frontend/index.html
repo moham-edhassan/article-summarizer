@@ -1,0 +1,35 @@
+ <!-- frontend/index.html 
+  Author: Mohamed Hassan
+  This is the landing page of the article summarizer application
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Article Summarizer</title>
+    <script src="./app/js"></script>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main>
+      <h1 class="title">Article Summarizer</h1>
+      <p class = "prompt">Paste a URL or raw text: </p>
+
+      <form id="summarize-form">
+        <label for="url">Article URL:</label>
+        <input id="url" name="url" type="url" placeholder="https://..." />
+
+        <label for="text">Raw Text:</label>
+        <textarea id="text" name="text" rows="8"></textarea>
+
+        <button type="submit" class="button">Summarize</button>
+      </form>
+
+      <section class="summary-container">
+        <h2>Summary</h2>
+        <pre id="summary"></pre> // Where the summary will be displayed
+      </section>
+    </main>
+  </body>
+</html>
