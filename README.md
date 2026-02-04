@@ -1,9 +1,7 @@
 # article-summarizer
 
-Minimal project scaffold with pseudocode for a 2-hour MVP article summarizer.
-
 ## Structure
-- `backend/server.js` – backend API pseudocode
+- `backend/server.js` 
 - `backend/package.json` – backend scripts
 - `frontend/index.html` – simple UI shell
 - `frontend/app.js` – frontend pseudocode
@@ -22,7 +20,3 @@ Backend:
   - Call OpenAI summarization API
   - Return summary
 ```
-
-## Notes
-- This is pseudocode only. Replace the placeholders with real code and wire to OpenAI.
-- Set `OPENAI_API_KEY` in the backend environment when implementing.
