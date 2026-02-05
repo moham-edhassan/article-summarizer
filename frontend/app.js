@@ -1,27 +1,72 @@
-// Wait for the DOM to finish loading before running any logic.
-document.addEventListener('DOMContentLoaded', () => {
+/* frontend/app.js
+Author: Mohamed Hassan
+This is the JavaScript file for the article summarizer application
+*/
+document.addEventListener("DOMContentLoaded", pageLoadedMain);
 
-// Get the summarize form element from the page.
-// Get the URL input element from the page.
-// Get the text input element from the page.
-// Get the summary output element from the page.
+function pageLoadedMain(){
+    const summarizeForm = document.getElementById("summarize-form");
+    summarizeForm.addEventListener("submit", summarizeFormSubmitted);
+}
 
-// Define a function to send a summarize request.
-// Build the POST request with JSON body { url, text }.
-// Await the response from the backend.
-// If the response is not OK, throw an error.
-// Parse the JSON response.
-// Render the summary text in the output area.
-// If any error happens, render a friendly error message.
+function summarizeFormSubmitted(event){
+    event.preventDefault();
+    const url = document.getElementById("url").value.trim();
+    const text = document.getElementById("text").value.trim();
 
-// Define a function to display the summary text in the UI.
-// Set the summary output to show the given summary text.
+    if(!url && !text){
+        displayError("Enter a URL or text to summarize");
+        return;
+    }
 
-// Add a submit handler to the form.
-// Prevent the default form submission.
-// Read and trim the URL input value.
-// Read and trim the text input value.
-// If both are empty, show a validation message and stop.
-// Show a loading message in the output area.
-// Call the summarize function with url/text.
-// When complete, show the summary or error.
+    summarizeArticle(url, text);
+}
+
+function displaySummary(text){
+    const summaryElement = document.getElementById("summary");
+    summaryElement.textContent = text;
+}
+
+function displayError(message){
+    const errorElement = document.getElementById("error-message");
+    errorElement.textContent = message;
+    errorElement.classList.remove("hidden");
+}
+
+function setLoadingState(isLoading){
+    const submitButton = document.querySelector("button[type='submit']");
+    if(isLoading){
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Summarizing...";
+    }else{
+        submitButton.disabled = false;
+        submitButton.innerHTML = "Summarize";
+    }
+}
+
+function summarizeArticle(url, text){
+    setLoadingState(true);
+    const request = new XMLHttpRequest();
+    request.open("POST", "/summarize", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener('load',() =>handleResponse(request));
+    request.addEventListener("error",() => handleError());
+    request.send(JSON.stringify({url, text}));
+
+}
+
+function handleResponse(request){
+    setLoadingState(false);
+    if(request.status === 200){
+        const response = JSON.parse(request,responseText);
+        displaySummary(response.summary);
+    }else{
+        handleError();
+    }
+    
+}
+
+function handleError(){
+    setLoadingState(false);
+    displayError("An error occurred while summarizing the article");
+}
