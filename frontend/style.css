@@ -1,0 +1,35 @@
+/* main.css */
+/* Author: Mohamed Hassan */
+/* This is the CSS file for the article summarizer application */
+main{
+    max-width: 700px; 
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+}
+.title{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+.prompt{
+    text-align: center;
+    font-size: 1.2rem;
+    color: black;
+    margin-bottom: 20px;
+}
+.hidden{
+    display:none;
+}
+
+.error-message{
+    color: red;
+    font-size: 1.2rem;
+    text-align: center;
+}
+

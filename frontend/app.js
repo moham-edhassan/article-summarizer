@@ -81,7 +81,7 @@ function summarizeArticle(url, text){
     request.addEventListener('load',() =>handleResponse(request));
     //Adds an event listener to the request to handle the error from the server
     request.addEventListener("error",() => handleError("Request has failed. Please try again."));
-    //Sends the request to the server to summarize the article
+    //Sending the request to the server to summarize the article
     request.send(JSON.stringify({url, text}));
 
 }
