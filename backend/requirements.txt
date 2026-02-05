@@ -1,0 +1,9 @@
+# backend/requirements.txt
+# Author: Mohamed Hassan
+# This is the requirements file for the article summarizer application
+fastapi
+uvicorn
+transformers
+torch
+requests
+beautifulsoup4
