@@ -24,11 +24,11 @@ function summarizeFormSubmitted(event){
     if(!url && !text){
         //Displays an error message if no URL or text is provided
         displayError("Enter a URL or text to summarize");
-        //Hides the error message
-        hideError();
         //Exits the function if no URL or text is provided
         return;
     }
+    //Hides the error message
+    hideError();
     //Calls the summarizeArticle function with the URL and text
     summarizeArticle(url, text);
 }
