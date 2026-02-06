@@ -43,8 +43,11 @@ def summarize_endpoint(request: summarizeRequest):
         try:
             #fetching the content from the url
             html = requests.get(request.url).text
+            #parsing the html content using the readability library
             document = Document(html)
+            #getting the summary of the article
             html = document.summary()
+            #parsing the html content using the beautifulsoup library
             soup = BeautifulSoup(html, "html.parser")
             #removing the script and style tags
             for tag in soup(["script", "style"]):
