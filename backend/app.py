@@ -4,13 +4,26 @@
 
 #importing the necessary libraries
 from fastapi import FastAPI, HTTPException
-from summarizer import summarize_text
+from fastapi.middleware.cors import CORSMiddleware
+from readability import Document
+from summarizer import summarize
 from pydantic import BaseModel
 from bs4 import BeautifulSoup
 import requests
 
 #creating the FastAPI app
 app = FastAPI()
+
+#adding the CORS middleware to the app
+app.add_middleware(
+    CORSMiddleware,
+    #allowing the frontend to access the backend from the localhost port 5500
+    allow_origins=["http://localhost:5500"],
+    allow_credentials=True,
+    #allowing all methods and headers
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #creating the summarizeRequest model to validate the request
 class summarizeRequest(BaseModel):
@@ -20,7 +33,7 @@ class summarizeRequest(BaseModel):
 #creating the summarize endpoint
 @app.post("/summarize")
 #creating the summarize function to summarize the text 
-def summarize(request: summarizeRequest):
+def summarize_endpoint(request: summarizeRequest):
     #validating the request
     if(request.url and request.text) or (not request.url and not request.text):
         #raising an error if the request is invalid -> can only provide one of URL or text, not both or none
@@ -30,7 +43,8 @@ def summarize(request: summarizeRequest):
         try:
             #fetching the content from the url
             html = requests.get(request.url).text
-            #parsing the html content
+            document = Document(html)
+            html = document.summary()
             soup = BeautifulSoup(html, "html.parser")
             #removing the script and style tags
             for tag in soup(["script", "style"]):
@@ -47,6 +61,6 @@ def summarize(request: summarizeRequest):
         #using the text input
         content = request.text
     #summarizing the text
-    summary = summarize_text(content)
+    summary = summarize(content)
     #returning the summary
     return {"summary": summary}

@@ -72,8 +72,8 @@ function summarizeArticle(url, text){
     setLoadingState(true);
     //Creates a new XMLHttpRequest object
     const request = new XMLHttpRequest();
-    //Opens a new request to the server to summarize the article
-    request.open("POST", "/summarize", true);
+    //Opens a new request to the server to summarize the article -> Localhost
+    request.open("POST", "http://127.0.0.1:8000/summarize", true);
     //Sets the content type to JSON
     request.setRequestHeader("Content-Type", "application/json");
 
@@ -113,7 +113,7 @@ function handleError(message){
 
 }
 
-//HideError function: I made this function because I needed to errors in muliple places.
+//HideError function: I made this function because I needed to hide errors in multiple places.
 function hideError(){
     //Gets the error element and adds the hidden class to it
     const errorElement = document.getElementById("error-message");
