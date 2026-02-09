@@ -1,35 +1,112 @@
-/* main.css */
+/* main.css
 /* Author: Mohamed Hassan */
 /* This is the CSS file for the article summarizer application */
-main{
-    max-width: 700px; 
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0 0 10px black;
-}
-.title{
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-.prompt{
-    text-align: center;
-    font-size: 1.2rem;
-    color: black;
-    margin-bottom: 20px;
-}
-.hidden{
-    display:none;
+
+* { 
+    box-sizing: border-box;
+ }
+html, body { 
+    height: 100%;
+    margin: 0; 
+    font-family: "Inter", -apple-system, sans-serif; 
+    background: whitesmoke; 
+    color: black; 
 }
 
-.error-message{
-    color: red;
-    font-size: 1.2rem;
-    text-align: center;
+main {
+  max-width: 800px;
+  margin: 24px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+/* Header */
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+}
+/* Prompt */
+.prompt {
+  text-align: center;
+  color: dimgray;
+  margin-top: -8px;
+}
+
+/* Form area */
+form {
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Labels */
+label { 
+    font-weight: 600;
+    font-size: 0.95rem; 
+}
+
+/* Inputs */
+input[type="url"], textarea {
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  background: whitesmoke;
+}
+
+input[type="url"]:focus, textarea:focus {
+  border-color: blue;
+  background: white;
+}
+
+button.button {
+  align-self: flex-end;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: green;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.button:disabled {
+  background: lightgray;
+  cursor: not-allowed;
+}
+
+/* Summary bubble */
+.summary-container {
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+#summary {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* Error */
+#error-message {
+  background: lightcoral;
+  color: darkred;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid lightcoral;
+}
+
+/* Hidden */
+.hidden { 
+    display: none; 
+}
