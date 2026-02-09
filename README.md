@@ -46,17 +46,17 @@ Example response:
 ## File Structure
 
 article-summarizer/
-  backend/
-    app.py
-    summarizer.py
-    requirements.txt
-  frontend/
-    index.html
-    app.js
-    style.css
-  README.md
-  LICENSE
-  .gitignore
+backend/
+app.py
+summarizer.py
+requirements.txt
+frontend/
+index.html
+app.js
+style.css
+README.md
+LICENSE
+.gitignore
   
 ## Next Steps: 
 
