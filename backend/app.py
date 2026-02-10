@@ -18,7 +18,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     #allowing the frontend to access the backend from the localhost port 5500
-    allow_origins=["http://localhost:5500"],
+    allow_origins=["https://artsummarizer.netlify.app/"],
     allow_credentials=True,
     #allowing all methods and headers
     allow_methods=["*"],
