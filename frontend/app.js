@@ -73,7 +73,7 @@ function summarizeArticle(url, text){
     //Creates a new XMLHttpRequest object
     const request = new XMLHttpRequest();
     //Opens a new request to the server to summarize the article -> Localhost
-    request.open("POST", "https://article-summarizer-6b2d.onrender.com", true);
+    request.open("POST", "https://article-summarizer-6b2d.onrender.com/summarize", true);
     //Sets the content type to JSON
     request.setRequestHeader("Content-Type", "application/json");
 
