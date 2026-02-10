@@ -12,11 +12,11 @@ summarizer = pipeline("summarization", model = "facebook/bart-large-cnn")
 def summarize(text : str) -> str:
     #stripping text of any extra spaces
     text = text.strip()
-    #setting the max characters to 3000
-    max_characters = 3000
-    #if the text is long than 3000 chars, truncate the text to 3000 chars
+    #setting the max characters to 2000
+    max_characters = 2000
+    #if the text is long than 2000 chars, truncate the text to 2000 chars
     if len(text) > max_characters:
-        #truncating the text to 3000 chars
+        #truncating the text to 2000 chars
         text = text[:max_characters]
         
     #setting the max length to 130
