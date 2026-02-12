@@ -68,6 +68,6 @@ def summarize_endpoint(request: summarizeRequest):
         summary = summarize(content)
         #raising an error if the summary is not a string
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=502, detail=str(e))
     #returning the summary
     return {"summary": summary}
