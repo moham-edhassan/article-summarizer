@@ -4,10 +4,10 @@ A web app that summarizes either a URL or raw text using Hugging Face’s `faceb
 
 ## Tech Stack
 
-- Frontend: HTML, CSS, Vanilla JavaScript
+-  Frontend: HTML, CSS, Vanilla JavaScript
 - Backend: FastAPI (Python)
-- NLP: Hugging Face Transformers (`facebook/bart-large-cnn`)
-- Utilities: Requests, BeautifulSoup
+- NLP: Hugging Face Inference API (`facebook/bart-large-cnn`)
+- Utilities: Requests, BeautifulSoup, readability-lxml
 
 ## Features
 

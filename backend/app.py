@@ -41,8 +41,8 @@ def summarize_endpoint(request: summarizeRequest):
     #if the URL is provided, fetch the content from the URL
     if request.url:
         try:
-            #fetching the content from the url
-            html = requests.get(request.url).text
+            #fetching the content from the url with a timeout of 10 seconds
+            html = requests.get(request.url, timeout=10).text
             #parsing the html content using the readability library
             document = Document(html)
             #getting the summary of the article

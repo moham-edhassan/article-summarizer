@@ -1,33 +1,36 @@
 # backend/summarizer.py
 # Author: Mohamed Hassan
 # This is the summarizer module for the article summarizer application
-
-#importing the summarizer pipeline
-from transformers import pipeline
-
-#making the summarizer pipeline
-summarizer = pipeline("summarization", model = "facebook/bart-large-cnn")
+#importing necessary libraries
+import requests
+import os
+#setting the API token and model URL
+HF_API_TOKEN = os.getenv("HF_API_TOKEN")
+#setting the model URL
+HF_MODEL_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
 
 #the summarize function summarizes the text using the summarizer pipeline and returns the summary
-def summarize(text : str) -> str:
-    #stripping text of any extra spaces
-    text = text.strip()
-    #setting the max characters to 2000
-    max_characters = 2000
-    #if the text is long than 2000 chars, truncate the text to 2000 chars
-    if len(text) > max_characters:
-        #truncating the text to 2000 chars
-        text = text[:max_characters]
-        
-    #setting the max length to 130
-    max_length = 130
-    #setting the min length to 30
-    min_length = 30
-    #if the text is less than 400 chars, set the min length to 10
-    if len(text) < 400:
-        #setting the min length to 10
-        min_length = 10
-    #summarizing the text using the pipeline
-    result = summarizer(text, max_length = max_length, min_length = min_length, do_sample = False)
+def summarize(text: str) -> str:
+    #setting the headers for the request
+    if not HF_API_TOKEN:
+        raise ValueError("HF_API_TOKEN is not set")
+    headers = {"Authorization": f"Bearer {HF_API_TOKEN}"}
+    #setting the payload for the request
+    payload = {
+        "inputs": text[:3000],
+        "parameters": {"max_length": 130, "min_length": 30}
+    }
+    #sending the request to the model and getting the response
+    res = requests.post(HF_MODEL_URL, headers=headers, json=payload, timeout=60)
+    #raising an error if the request fails
+    res.raise_for_status()
+    #getting the data from the response
+    data = res.json()
+    #raising an error if the response is not a dictionary
+    if isinstance(data, dict):
+        raise ValueError(data.get("error", "Unexpected response from model"))
+    #raising an error if the response is not a list
+    if not data or "summary_text" not in data[0]:
+        raise ValueError("No summary returned from model")
     #returning the summary in the format of a string
-    return result[0]['summary_text']
+    return data[0]["summary_text"]
