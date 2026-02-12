@@ -7,7 +7,7 @@ import os
 #setting the API token and model URL
 HF_API_TOKEN = os.getenv("HF_API_TOKEN")
 #setting the model URL
-HF_MODEL_URL = "https://api-inference.huggingface.co/models/sshleifer/distilbart-cnn-12-6"
+HF_MODEL_URL = "https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6"
 
 #the summarize function summarizes the text using the summarizer pipeline and returns the summary
 def summarize(text: str) -> str:
