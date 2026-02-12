@@ -18,7 +18,7 @@ def summarize(text: str) -> str:
     #setting the payload for the request
     payload = {
         "inputs": text[:3000],
-        "parameters": {"max_length": 130, "min_length": 30}
+        "parameters": {"max_length": 240, "min_length": 90}
     }
     #sending the request to the model and getting the response
     res = requests.post(HF_MODEL_URL, headers=headers, json=payload, timeout=60)
